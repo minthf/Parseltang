@@ -1,7 +1,6 @@
 import unittest
 from zonk_points import calc_zonk_combo
 
-
 class TestZonkPoints(unittest.TestCase):
 	def test_zonk_points_ones_and_fives(self):
 		self.assertEqual(calc_zonk_combo([1, 1, 5, 5, 2, 3]), 300)
