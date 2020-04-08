@@ -33,7 +33,7 @@ def draw_koh_curve(start: Point, end: Point, deep=3):
 	triangle_angle = (m.pi / 3) + angle
 	cx = second_point.x + (m.cos(triangle_angle) * (length / 3))
 	cy = second_point.y - (m.sin(triangle_angle) * (length / 3))
-	third_point = Point(cx,cy)
+	third_point = Point(cx, cy)
 
 	draw.line((second_point.x, second_point.y, third_point.x, third_point.y))
 	draw.line((third_point.x, third_point.y, fourth_point.x, fourth_point.y))
@@ -43,7 +43,6 @@ def draw_koh_curve(start: Point, end: Point, deep=3):
 	draw_koh_curve(second_point, third_point, deep - 1)
 	draw_koh_curve(third_point, fourth_point, deep - 1)
 	draw_koh_curve(fourth_point, end, deep - 1)
-
 
 
 start_point = Point(10, 200)
