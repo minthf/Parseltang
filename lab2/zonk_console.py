@@ -69,10 +69,7 @@ def from_degrees_to_radians(degree):
 	return radian
 
 
-def find_point(start: Point, angle, dice_length):
-	x = start.x + (cos(angle) * dice_length)
-	y = start.y - (sin(angle) * dice_length)
-	return Point(x, y)
+
 
 
 def create_dice():

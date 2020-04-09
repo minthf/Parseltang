@@ -24,7 +24,7 @@ def draw_koh_curve(start: Point, end: Point, deep=3):
 	length = m.sqrt(pow((start.x - end.x), 2) + pow((start.y - end.y), 2))
 
 	second_point = find_part_of_line(start, end, 1 / 2)
-	fourth_point = find_part_of_line(start, end, 2 / 1)
+	fourth_point = find_part_of_line(start, end, 2)
 
 	angle = m.atan((start.y - end.y) / (end.x - start.x))
 	if end.x < start.x:
