@@ -12,6 +12,17 @@ class Point:
 		self.y = y
 
 
+class Dice:
+	def __init__(self, first: Point, second: Point, third: Point, fourth: Point):
+		self.first_point = first
+		self.second_point = second
+		self.third_point = third
+		self.fourth_point = fourth
+	def draw_dice(self):
+		place_dice.create_polygon(self.first_point.x, self.first_point.y, self.second_point.x, self.second_point.y, self.third_point.x,
+		                          self.third_point.y, self.fourth_point.x, self.fourth_point.y, fill='white')
+
+
 class Circle:
 	def __init__(self, first: Point, second: Point):
 		self.first_point = first
@@ -24,9 +35,9 @@ class Circle:
 		                       (self.first_point.y + self.second_point.y) / 2, width=5)
 
 
-def circle(first: Point, second: Point, third: Point, fourth: Point, center: Point, dice: list):
+def quantity_of_circles(first: Point, second: Point, third: Point, fourth: Point, center: Point, dice_points: list):
 	circle_quantity = random.randint(1, 6)
-	dice.append(circle_quantity)
+	dice_points.append(circle_quantity)
 	if (circle_quantity == 1 or circle_quantity == 5 or circle_quantity == 3):
 		first_circle = Circle(center, center)
 		first_circle.draw_circle()
@@ -66,7 +77,7 @@ def find_point(start: Point, angle, dice_length):
 
 def create_dice():
 	place_dice.delete("all")
-	dice = []
+	dice_points = []
 	for i in range(random.randint(1, 6)):
 		x = random.randint(50, 350)
 		y = random.randint(50, 150)
@@ -84,10 +95,10 @@ def create_dice():
 		x3 = 2 * center_point.x - first_point.x
 		y3 = 2 * center_point.y - first_point.y
 		third_point = Point(x3, y3)
-		place_dice.create_polygon(first_point.x, first_point.y, second_point.x, second_point.y, third_point.x,
-		                          third_point.y, fourth_point.x, fourth_point.y, fill='white')
-		circle(first_point, second_point, third_point, fourth_point, center_point, dice)
-	points = calc_zonk_combo(dice)
+		dice = Dice(first_point,second_point,third_point,fourth_point)
+		dice.draw_dice()
+		quantity_of_circles(first_point, second_point, third_point, fourth_point, center_point, dice_points)
+	points = calc_zonk_combo(dice_points)
 	label_points = Label(text=points, font="Arial 14")
 	label_points.place(x=200, y=250)
 
