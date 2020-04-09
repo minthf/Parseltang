@@ -12,29 +12,45 @@ class Point:
 		self.y = y
 
 
+class Circle:
+	def __init__(self, first: Point, second: Point):
+		self.first_point = first
+		self.second_point = second
+
+	def draw_circle(self):
+		place_dice.create_oval((self.first_point.x + self.second_point.x) / 2,
+		                       (self.first_point.y + self.second_point.y) / 2,
+		                       (self.first_point.x + self.second_point.x) / 2,
+		                       (self.first_point.y + self.second_point.y) / 2, width=5)
+
+
 def circle(first: Point, second: Point, third: Point, fourth: Point, center: Point, dice: list):
 	circle_quantity = random.randint(1, 6)
 	dice.append(circle_quantity)
 	if (circle_quantity == 1 or circle_quantity == 5 or circle_quantity == 3):
-		place_dice.create_oval(center.x, center.y, center.x + 1, center.y + 1, width=5)
+		first_circle = Circle(center, center)
+		first_circle.draw_circle()
 	if (
 			circle_quantity == 2 or circle_quantity == 3 or circle_quantity == 4 or circle_quantity == 5 or circle_quantity == 6):
-		place_dice.create_oval((center.x + first.x) / 2, (center.y + first.y) / 2, (center.x + first.x) / 2,
-		                       (center.y + first.y) / 2, width=5)
-		place_dice.create_oval((center.x + third.x) / 2, (center.y + third.y) / 2, (center.x + third.x) / 2,
-		                       (center.y + third.y) / 2, width=5)
+		second_circle = Circle(center, first)
+		second_circle.draw_circle()
+
+		third_circle = Circle(center, third)
+		third_circle.draw_circle()
 	if (circle_quantity == 4 or circle_quantity == 6 or circle_quantity == 5):
-		place_dice.create_oval((center.x + fourth.x) / 2, (center.y + fourth.y) / 2, (center.x + fourth.x) / 2,
-		                       (center.y + fourth.y) / 2, width=5)
-		place_dice.create_oval((center.x + second.x) / 2, (center.y + second.y) / 2, (center.x + second.x) / 2,
-		                       (center.y + second.y) / 2, width=5)
+		fourt_circle = Circle(center, fourth)
+		fourt_circle.draw_circle()
+
+		fifth_circle = Circle(center, second)
+		fifth_circle.draw_circle()
 	if (circle_quantity == 6):
-		place_dice.create_oval((center.x + ((first.x + fourth.x) / 2)) / 2, (center.y + ((first.y + fourth.y) / 2)) / 2,
-		                       (center.x + ((first.x + fourth.x) / 2)) / 2,
-		                       (center.y + ((first.y + fourth.y) / 2)) / 2, width=5)
-		place_dice.create_oval((center.x + ((second.x + third.x) / 2)) / 2, (center.y + ((second.y + third.y) / 2)) / 2,
-		                       (center.x + ((second.x + third.x) / 2)) / 2,
-		                       (center.y + ((second.y + third.y) / 2)) / 2, width=5)
+		point_for_sixth_circle = Point((first.x + fourth.x) / 2, (first.y + fourth.y) / 2)
+		point_for_seveth_circle = Point((second.x + third.x) / 2, (second.y + third.y) / 2)
+		sixth_circle = Circle(center, point_for_sixth_circle)
+		sixth_circle.draw_circle()
+
+		seventh_circle = Circle(center, point_for_seveth_circle)
+		seventh_circle.draw_circle()
 
 
 def from_degrees_to_radians(degree):
