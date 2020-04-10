@@ -1,7 +1,7 @@
 from tkinter import *
 from math import *
 from random import randint
-from zonk_points import calc_zonk_combo
+from zonk_points import calculator
 
 DICE_LENGTH = 40
 
@@ -100,7 +100,7 @@ def create_dice():
 	for dice in dices:
 		dice.draw()
 		points.append(dice.get_points())
-	label_points["text"] = calc_zonk_combo(points)
+	label_points["text"] = calculator.calc_zonk_combo(points)
 
 
 def exit_program():
